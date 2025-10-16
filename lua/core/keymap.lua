@@ -1,4 +1,6 @@
 --<Ctrl-z>绑定u
+-- 告诉Lua语言服务器vim是全局变量
+---@diagnostic disable: undefined-global
 vim.keymap.set({"n","i"},"<C-z>","<Cmd>undo<CR>", {silent = true})
 
 

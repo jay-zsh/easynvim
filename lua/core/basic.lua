@@ -1,4 +1,6 @@
 --显示行号
+-- 告诉Lua语言服务器vim是全局变量
+---@diagnostic disable: undefined-global
 vim.opt.number = true
 --显示相对行号
 vim.opt.relativenumber = true

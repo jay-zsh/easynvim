@@ -1,5 +1,6 @@
 return {
-    "git@github.com:nvimdev/lspsaga.nvim.git",
+    "https://github.com/nvimdev/lspsaga.nvim",
+    version = "*",
     cmd = "Lspsaga",
     opts = {
         finder = {

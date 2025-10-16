@@ -1,10 +1,10 @@
 return {
-    "git@github.com:nvim-telescope/telescope.nvim.git",
+    "https://github.com/nvim-telescope/telescope.nvim",
     cmd = "Telescope",  -- cmd Telescope` 懒加载
     dependencies = {
-        "git@github.com:nvim-lua/plenary.nvim.git",
+        "https://github.com/nvim-lua/plenary.nvim",
         {
-            "git@github.com:nvim-telescope/telescope-fzf-native.nvim.git",
+            "https://github.com/nvim-telescope/telescope-fzf-native.nvim",
             build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && "
                 .. "cmake --build build --config Release && "
                 .. "cmake --install build --prefix build",
