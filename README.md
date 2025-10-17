@@ -32,9 +32,9 @@
 
 2. 克隆此配置：
    ```bash
-   git clone https://github.com/yourusername/neovim-config.git ~/.config/nvim  # Linux/Mac
+   git clone git@github.com:jay-zsh/easynvim.git ~/.config/nvim  # Linux/Mac
    # 或在 Windows 上
-   # git clone https://github.com/yourusername/neovim-config.git %LOCALAPPDATA%\nvim
+   # git clone git@github.com:jay-zsh/easynvim.git %LOCALAPPDATA%\nvim
    ```
 
 3. 首次启动 Neovim：
