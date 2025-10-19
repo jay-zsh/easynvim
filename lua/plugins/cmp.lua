@@ -22,7 +22,6 @@ return {
   config = function()
     local cmp = require("cmp")
     local lspkind = require("lspkind")
-    
     -- 确保 cmp_nvim_lsp 已正确加载
     local has_cmp_lsp, cmp_lsp = pcall(require, "cmp_nvim_lsp")
     if not has_cmp_lsp then
