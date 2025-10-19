@@ -1,11 +1,14 @@
 -- lua/plugins/cmp.lua
 -- 补全功能
 
+
 -- lua/plugins/cmp.lua
 return {
   "hrsh7th/nvim-cmp",
+  enabled = true,
   version = "*",
-  event = "InsertEnter",
+  --event = "InsertEnter",
+  event = "VeryLazy",
   dependencies = {
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-buffer",
