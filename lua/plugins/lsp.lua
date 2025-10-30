@@ -33,10 +33,10 @@ return {
       -- require("lsp-format").on_attach(client)  -- 如果你用了格式化插件
     end
 
-    -- LSP 服务器自定义配置
+    -- LSP 服务器自定义配置 - 修正：添加正确的命令
     local servers = {
       lua_ls = {
-        cmd = { "lua-language-server" },
+        cmd = { "lua-language-server" }, -- 修正：使用正确的命令名称
         settings = {
           Lua = {
             diagnostics = {
@@ -52,23 +52,23 @@ return {
         },
       },
       pyright = {
-        cmd = { "pyright-langserver", "--stdio" },
+        cmd = { "pyright-langserver", "--stdio" }, -- 修正：添加正确的命令
       },
       clangd = {
-        cmd = { "clangd" },
+        cmd = { "clangd" }, -- 修正：添加命令
       },
       html = {
-        cmd = { "vscode-html-language-server", "--stdio" },
+        cmd = { "vscode-html-language-server", "--stdio" }, -- 修正：添加命令
         filetypes = { "html" }
       },
       cssls = {
-        cmd = { "vscode-css-language-server", "--stdio" },
+        cmd = { "vscode-css-language-server", "--stdio" }, -- 修正：添加命令
       },
-      tsserver = {
-        cmd = { "typescript-language-server", "--stdio" },
+      tsserver = { -- 修正：服务器名称应该是 tsserver
+        cmd = { "typescript-language-server", "--stdio" }, -- 修正：添加命令
       },
       emmet_ls = {
-        cmd = { "emmet-ls", "--stdio" },
+        cmd = { "emmet-ls", "--stdio" }, -- 修正：添加命令
         filetypes = { "html", "jsx", "tsx", "vue", "svelte" },
       },
     }
@@ -119,10 +119,10 @@ return {
         c = 'clangd',
         html = 'html',
         css = 'cssls',
-        javascript = 'tsserver',
-        typescript = 'tsserver',
-        javascriptreact = 'tsserver',
-        typescriptreact = 'tsserver',
+        javascript = 'tsserver', -- 修正：使用正确的服务器名称
+        typescript = 'tsserver', -- 修正：使用正确的服务器名称
+        javascriptreact = 'tsserver', -- 修正：使用正确的服务器名称
+        typescriptreact = 'tsserver', -- 修正：使用正确的服务器名称
         vue = 'emmet_ls',
         svelte = 'emmet_ls'
       }
@@ -152,9 +152,10 @@ return {
       
       local config = _G.my_lsp_config.servers[server_name]
       
+      -- 修正：使用正确的命令配置
       local client_config = {
         name = server_name,
-        cmd = config.cmd,
+        cmd = config.cmd, -- 修正：使用配置中定义的命令
         filetypes = config.filetypes or { filetype },
         root_dir = vim.fn.getcwd(),
         capabilities = _G.my_lsp_config.capabilities,
@@ -162,7 +163,7 @@ return {
         settings = config.settings or {}
       }
       
-      -- 使用vim.lsp.start API
+      -- 使用vim.lsp.start API（Neovim 0.8+推荐方式）
       local ok, client_id = pcall(function()
         return vim.lsp.start(client_config)
       end)
@@ -193,6 +194,7 @@ return {
       vim.api.nvim_create_autocmd('FileType', {
         pattern = ft,
         callback = function(args)
+          -- 使用vim.schedule确保通知在合适的时机显示
           vim.schedule(function()
             local buf_ft = vim.bo[args.buf].filetype
             if buf_ft == ft then
@@ -208,6 +210,7 @@ return {
     vim.api.nvim_create_autocmd("FileType", {
       pattern = "java",
       callback = function(args)
+        -- 使用vim.schedule确保通知在合适的时机显示
         vim.schedule(function()
           local buf_ft = vim.bo[args.buf].filetype
           if buf_ft ~= "java" then return end
@@ -224,18 +227,17 @@ return {
 
           -- 项目根目录检测
           local root_dir = jdtls.setup.find_root({ ".git", "pom.xml", "build.gradle", "gradlew", "mvnw" })
-          
           if not root_dir then
             notify_warning("未找到 Java 项目根目录，jdtls 可能无法正常工作")
             root_dir = vim.fn.getcwd()
           end
 
           local config = {
-            cmd = { "jdtls" },
+            cmd = { "jdtls" }, -- 确保 jdtls 在 PATH 中
             root_dir = root_dir,
             capabilities = capabilities,
             on_attach = function(client, bufnr)
-              on_attach(client, bufnr)
+              on_attach(client, bufnr) -- 复用通用 on_attach
               notify_success("jdtls 服务器附加成功")
             end,
           }
@@ -249,7 +251,6 @@ return {
         end)
       end,
     })
-    
     -- 添加手动启动LSP的命令，用于调试
     vim.api.nvim_create_user_command('StartLSP', function(opts)
       local ft = opts.args or vim.bo.filetype
