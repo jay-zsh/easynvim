@@ -1,19 +1,25 @@
---显示行号
 -- 告诉Lua语言服务器vim是全局变量
 ---@diagnostic disable: undefined-global
+
+
+--显示行号
 vim.opt.number = true
+
 --显示相对行号
 vim.opt.relativenumber = true
 
 --光标所在行高亮
 vim.opt.cursorline = true
+
 --单行字符数阈值高亮设置为80
 vim.opt.colorcolumn = "80"
 
 --tap转换为空格
 vim.opt.expandtab = true
+
 --tap转换为空格数量的默认值
 vim.opt.tabstop = 4
+
 --将换行缩进设置为零避免与tanstop冲突
 vim.opt.shiftwidth = 0
 
