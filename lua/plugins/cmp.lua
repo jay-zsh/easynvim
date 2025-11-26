@@ -1,7 +1,5 @@
 -- lua/plugins/cmp.lua
 -- 补全功能
-
-
 -- lua/plugins/cmp.lua
 return {
   "hrsh7th/nvim-cmp",
@@ -23,11 +21,10 @@ return {
     local cmp = require("cmp")
     local lspkind = require("lspkind")
     -- 确保 cmp_nvim_lsp 已正确加载
-    local has_cmp_lsp, cmp_lsp = pcall(require, "cmp_nvim_lsp")
+    local has_cmp_lsp = pcall(require, "cmp_nvim_lsp")
     if not has_cmp_lsp then
       vim.notify("cmp_nvim_lsp 插件未找到，请确保已安装", vim.log.levels.ERROR)
     end
-    
     cmp.setup({
       snippet = {
         expand = function(args)
@@ -92,7 +89,6 @@ return {
         },
       },
     })
-    
     -- 配置命令行补全
     cmp.setup.cmdline("/", {
       mapping = cmp.mapping.preset.cmdline(),
@@ -100,7 +96,6 @@ return {
         { name = "buffer" }
       }
     })
-    
     cmp.setup.cmdline(":", {
       mapping = cmp.mapping.preset.cmdline(),
       sources = cmp.config.sources({

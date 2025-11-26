@@ -9,7 +9,6 @@ return {
             "lua",
             "toml",
             "python",
-            "java",
             "cpp",        -- C++
             "c",          -- C
             "json",
@@ -21,8 +20,6 @@ return {
             "javascript",
             "typescript",
             "tsx",
-            "go",
-            "rust"
         },
         highlight = {
             enable = true,

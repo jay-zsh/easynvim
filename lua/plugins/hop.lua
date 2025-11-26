@@ -5,7 +5,7 @@ return {
         hint_position = 3
     },
     keys = {
-        { "<leader>hp", "<Cmd>HopWord<CR>",silent = true}
+        { "ff", "<Cmd>HopWord<CR>",silent = true}
     }
 
 }

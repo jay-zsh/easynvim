@@ -10,7 +10,7 @@ return {
         },
     },
     keys = {
-        { "<leader>uf", ":NvimTreeToggle<CR>" },
+        { "<leader>u", ":NvimTreeToggle<CR>" },
     },
 }
 
