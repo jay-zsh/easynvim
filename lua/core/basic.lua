@@ -52,3 +52,7 @@ vim.opt.nrformats = "bin,hex,alpha"
 
 -- 时间间隔设置为 300ms 内必须按完两个 
 vim.opt.timeoutlen = 300
+
+
+--暗色背景
+vim.o.background = "dark"

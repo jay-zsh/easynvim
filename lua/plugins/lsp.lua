@@ -71,6 +71,10 @@ return {
         cmd = { "emmet-ls", "--stdio" }, -- 修正：添加命令
         filetypes = { "html", "jsx", "tsx", "vue", "svelte" },
       },
+      racket = {
+        cmd = { "racket", "-l", "racket-langserver" },
+        filetypes = { "racket", "scheme" },
+      },
     }
 
     -- 为Neovim 0.11创建简化的LSP配置
@@ -124,7 +128,9 @@ return {
         javascriptreact = 'tsserver', -- 修正：使用正确的服务器名称
         typescriptreact = 'tsserver', -- 修正：使用正确的服务器名称
         vue = 'emmet_ls',
-        svelte = 'emmet_ls'
+        svelte = 'emmet_ls',
+        racket = 'racket',
+        scheme = 'racket'
       }
       
       local server_name = filetype_to_server[filetype]
@@ -188,7 +194,7 @@ return {
     end
     
     -- 为常见文件类型创建自动命令
-    local filetypes = {'lua', 'python', 'cpp', 'c', 'html', 'css', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'vue', 'svelte'}
+    local filetypes = {'lua', 'python', 'cpp', 'c', 'html', 'css', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'vue', 'svelte', 'racket', 'scheme'}
     
     for _, ft in ipairs(filetypes) do
       vim.api.nvim_create_autocmd('FileType', {
